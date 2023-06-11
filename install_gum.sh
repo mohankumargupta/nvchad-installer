@@ -97,6 +97,15 @@ backup_config_files() {
   fi
 }
 
+copy_nvchad_config() {
+  echo "Copying NVChad config..."w
+  cd $(dirname "$config_dir")
+  git clone -q https://github.com/NvChad/NvChad nvim
+  cd "${config_dir}/lua"
+  git clone --branch v2.0_featureful https://github.com/NvChad/example_config custom
+  echo "Copied."
+}
+
 nvchad_installer() {
   #installed_version=$(installed_neovim_version)
   #required_neovim_version "$installed_version"
@@ -107,6 +116,7 @@ nvchad_installer() {
   $gum spin --spinner dot --title "Checking if neovim installed..." -- sleep 5
   is_neovim_installed
   backup_config_files
+  copy_nvchad_config
 }
 
 nvchad_installer
