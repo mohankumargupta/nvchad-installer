@@ -100,10 +100,28 @@ backup_config_files() {
 copy_nvchad_config() {
   echo "Copying NVChad config..."w
   cd $(dirname "$config_dir")
-  git clone -q https://github.com/NvChad/NvChad nvim
+  git clone --depth 1 -q https://github.com/NvChad/NvChad nvim
   cd "${config_dir}/lua"
-  git clone --branch v2.0_featureful https://github.com/NvChad/example_config custom
+  git clone --depth 1 --branch v2.0_featureful https://github.com/NvChad/example_config custom
   echo "Copied."
+}
+
+enable_nvdash() {
+chadrc_file="${config_dir}/lua/custom/chadrc.lua"
+echo "$chadrc_file"
+nvdash=$(cat<<-EOF
+
+M.ui = {
+  nvdash = {
+    load_on_startup = true,
+  }
+}
+
+EOF
+)
+
+new_chadrc=$(head -n -1 "$chadrc_file";echo "$nvdash";tail -n1 "$chadrc_file";)
+echo "$new_chadrc" > "$chadrc_file"
 }
 
 nvchad_installer() {
@@ -117,6 +135,7 @@ nvchad_installer() {
   is_neovim_installed
   backup_config_files
   copy_nvchad_config
+  enable_nvdash
 }
 
 nvchad_installer
