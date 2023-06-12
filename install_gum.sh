@@ -125,6 +125,7 @@ after=$(sed -e '1,/M\.ui/d' "$chadrc_file")
 
 enable_lsp() {
   curl -sSL https://raw.githubusercontent.com/mohankumargupta/nvchad-installer/dev/mason-extras.lua > "${config_dir}/lua/custom/configs/extras/mason-extras.lua"
+  curl -sSL https://raw.githubusercontent.com/mohankumargupta/nvchad-installer/dev/plugins.lua > "${config_dir}/lua/custom/plugins.lua"
 }
 
 enable_formatters_and_linters() {
