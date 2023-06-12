@@ -123,8 +123,19 @@ after=$(sed -e '1,/M\.ui/d' "$chadrc_file")
 (echo "$before"; echo "$nvdash"; echo "$after") > "$chadrc_file"
 }
 
-enable_python() {
-true
+enable_lsp() {
+ 
+}
+
+enable_formatters_and_linters() {
+
+}
+
+enable_dap() {
+
+}
+
+enable_dap_ui() {
 }
 
 nvchad_installer() {
@@ -139,7 +150,10 @@ nvchad_installer() {
   backup_config_files
   copy_nvchad_config
   enable_nvdash
-  enable_python
+  enable_lsp
+  enable_formatters_and_linters
+  enable_dap
+  enable_dap_ui
 }
 
 nvchad_installer
