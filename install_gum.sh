@@ -124,18 +124,19 @@ after=$(sed -e '1,/M\.ui/d' "$chadrc_file")
 }
 
 enable_lsp() {
- 
+  curl -sSL https://raw.githubusercontent.com/mohankumargupta/nvchad-installer/dev/mason-extras.lua > "${config_dir}/lua/custom/configs/extras/mason-extras.lua"
 }
 
 enable_formatters_and_linters() {
-
+  true
 }
 
 enable_dap() {
-
+  true
 }
 
 enable_dap_ui() {
+  true
 }
 
 nvchad_installer() {
