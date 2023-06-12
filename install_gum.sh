@@ -129,7 +129,7 @@ enable_lsp() {
 }
 
 enable_formatters_and_linters() {
-  true
+  curl -sSL https://raw.githubusercontent.com/mohankumargupta/nvchad-installer/dev/null-ls.lua > "${config_dir}/lua/custom/null-ls.lua" 
 }
 
 enable_dap() {

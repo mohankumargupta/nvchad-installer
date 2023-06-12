@@ -7,7 +7,12 @@ local setup = function(_, opts)
   -- List of servers to install
   local servers = { "html", "cssls", "tsserver", "pyright", "arduino_language_server"}
 
-  require("mason").setup(opts)
+  require("mason").setup(opts = {
+    ensure_installed = {
+      "ruff",
+      "mypy",
+    }
+  })
 
   require("mason-lspconfig").setup({
     ensure_installed = servers,
@@ -47,7 +52,7 @@ local setup = function(_, opts)
 
     -- Example: disable auto configuring an LSP
     -- Here, we disable lua_ls so we can use NvChad's default config
-    ["lua_ls"] = function() end,
+    --["lua_ls"] = function() end,
   })
 end
 
