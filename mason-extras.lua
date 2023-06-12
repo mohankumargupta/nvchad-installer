@@ -7,10 +7,12 @@ local setup = function(_, opts)
   -- List of servers to install
   local servers = { "html", "cssls", "tsserver", "pyright", "arduino_language_server"}
 
-  require("mason").setup(opts = {
+  require("mason").setup({
+    opts = {
     ensure_installed = {
       "ruff",
       "mypy",
+    }
     }
   })
 
