@@ -108,20 +108,23 @@ copy_nvchad_config() {
 
 enable_nvdash() {
 chadrc_file="${config_dir}/lua/custom/chadrc.lua"
-echo "$chadrc_file"
 nvdash=$(cat<<-EOF
 
 M.ui = {
   nvdash = {
     load_on_startup = true,
-  }
-}
+  },
 
 EOF
 )
 
-new_chadrc=$(head -n -1 "$chadrc_file";echo "$nvdash";tail -n1 "$chadrc_file";)
-echo "$new_chadrc" > "$chadrc_file"
+before=$(sed  '/M\.ui/q' "$chadrc_file" |head -n -1)
+after=$(sed -e '1,/M\.ui/d' "$chadrc_file")
+(echo "$before"; echo "$nvdash"; echo "$after") > "$chadrc_file"
+}
+
+enable_python() {
+true
 }
 
 nvchad_installer() {
@@ -136,6 +139,7 @@ nvchad_installer() {
   backup_config_files
   copy_nvchad_config
   enable_nvdash
+  enable_python
 }
 
 nvchad_installer
