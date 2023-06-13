@@ -46,6 +46,19 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
+  -- CUSTOM: Mason-null-ls
+  {
+    "jay-babu/mason-null-ls.nvim",
+     event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    }, 
+        ensure_installed = {"black", "mypy"},
+    automatic_installation = false,
+    handlers={},
+  },
+
 
   -- To make a plugin not be loaded
   -- {

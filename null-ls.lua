@@ -28,3 +28,8 @@ null_ls.setup {
   debug = true,
   sources = sources,
 }
+
+require("mason-null-ls").setup({
+    ensure_installed = nil,
+    automatic_installation = true,
+})
